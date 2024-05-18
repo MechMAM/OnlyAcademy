@@ -8,6 +8,9 @@ export default function Home() {
   const handleCameraButton = () => {
     navigation.navigate('Camera');
   };
+  const handlePaymentButton = () => {
+    navigation.navigate('Payment');
+  };
   return (
     <View>
       <Text>Hello World</Text>
@@ -16,6 +19,13 @@ export default function Home() {
         mode="contained"
         onPress={() => handleCameraButton()}>
         Open camera
+      </Button>
+      <Button
+        style={{marginTop: 20}}
+        icon="card"
+        mode="contained"
+        onPress={() => handlePaymentButton()}>
+        Pagamento
       </Button>
     </View>
   );
