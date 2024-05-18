@@ -1,17 +1,17 @@
-import {View, Text} from 'react-native';
 import React from 'react';
-import {Button} from 'react-native-paper';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import CameraScreen from './components/Camera';
+import Home from './pages/home/home';
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View>
-      <Text>Hello World</Text>
-      <Button
-        icon="camera"
-        mode="contained"
-        onPress={() => console.log('Pressed')}>
-        Press me
-      </Button>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Camera" component={CameraScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
