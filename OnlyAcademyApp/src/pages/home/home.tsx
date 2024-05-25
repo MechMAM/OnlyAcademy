@@ -1,16 +1,20 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {Button} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {RootStack} from '../../App';
+import {NativeStackScreenProps} from 'react-native-screens/lib/typescript/native-stack/types';
 
-export default function Home() {
-  const navigation = useNavigation();
+type HomeScreenNavigationProp = NativeStackScreenProps<RootStack, 'Home'>;
+
+export default function Home(props: HomeScreenNavigationProp) {
   const handleCameraButton = () => {
-    navigation.navigate('Camera');
+    props.navigation.navigate('Camera');
   };
   const handlePaymentButton = () => {
-    navigation.navigate('Payment');
+    props.navigation.navigate('Payment');
   };
+
   return (
     <View>
       <Text>Hello World</Text>
@@ -26,6 +30,13 @@ export default function Home() {
         mode="contained"
         onPress={() => handlePaymentButton()}>
         Pagamento
+      </Button>
+      <Button
+        style={{marginTop: 20}}
+        icon={() => <Icon name="person" size={20} color="#900" />}
+        mode="contained"
+        onPress={() => props.navigation.navigate('Profile')}>
+        Profile
       </Button>
     </View>
   );
