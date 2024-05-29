@@ -13,12 +13,9 @@ export default function Payment() {
       </Button>
       <Text style={{color: 'black'}}>Conteúdo grátis pra sempre</Text>
       <Divider style={{marginTop: 20, marginBottom: 20}} />
-      <Button mode="contained">Plano Pop</Button>
-      <Text style={{color: 'black'}}>Plano intermediário, R$ 5,00 mensais</Text>
-      <Divider style={{marginTop: 20, marginBottom: 20}} />
       <Button mode="contained">Plano Premium</Button>
       <Text style={{color: 'black'}}>
-        Tudo que você sempre quis por apenas R$ 9,90
+        Tudo que você sempre quis por apenas R$ 4,90 mensais
       </Text>
       <Divider style={{marginTop: 20, marginBottom: 20}} />
     </View>
