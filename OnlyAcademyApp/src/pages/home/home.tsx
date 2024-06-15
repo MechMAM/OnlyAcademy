@@ -17,7 +17,7 @@ export default function Home(props: HomeScreenNavigationProp) {
 
   return (
     <View>
-      <Text>Hello World</Text>
+      <Text style={{color: 'black'}}>Only Academy</Text>
       <Button
         icon="camera"
         mode="contained"

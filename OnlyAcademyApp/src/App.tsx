@@ -5,12 +5,14 @@ import CameraScreen from './components/Camera';
 import Home from './pages/home/home';
 import Payment from './pages/;ayments/Payment';
 import ProfilePage from './pages/profile';
+import PremiumForm from './pages/;ayments/PremiumForm';
 
 export type RootStack = {
   Home: undefined;
   Camera: undefined;
   Payment: undefined;
   Profile: undefined;
+  PremiumForm: undefined;
 };
 
 const Stack = createStackNavigator<RootStack>();
@@ -23,6 +25,7 @@ export default function App() {
         <Stack.Screen name="Camera" component={CameraScreen} />
         <Stack.Screen name="Payment" component={Payment} />
         <Stack.Screen name="Profile" component={ProfilePage} />
+        <Stack.Screen name="PremiumForm" component={PremiumForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );
