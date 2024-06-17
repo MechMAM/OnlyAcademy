@@ -19,6 +19,13 @@ export default function Home(props: HomeScreenNavigationProp) {
     <View>
       <Text style={{color: 'black'}}>Only Academy</Text>
       <Button
+        icon="login"
+        mode="contained"
+        onPress={() => props.navigation.navigate('Login')}>
+        Login
+      </Button>
+      <Button
+        style={{marginTop: 20}}
         icon="camera"
         mode="contained"
         onPress={() => handleCameraButton()}>
@@ -37,6 +44,13 @@ export default function Home(props: HomeScreenNavigationProp) {
         mode="contained"
         onPress={() => props.navigation.navigate('Profile')}>
         Profile
+      </Button>
+      <Button
+        style={{marginTop: 20}}
+        icon={() => <Icon name="cloud-upload-outline" size={20} color="#900" />}
+        mode="contained"
+        onPress={() => props.navigation.navigate('UploadFile')}>
+        Fazer Upload
       </Button>
     </View>
   );
