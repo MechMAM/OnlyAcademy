@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import {Button, Card, Paragraph, Text, Title} from 'react-native-paper';
+import {Button, Card, Text} from 'react-native-paper';
 import {supabase} from '../config/initSupabase';
+import {useAuth} from '../provider/AuthProvider';
 
 interface UploadFileProps {
   // Add any props you need
@@ -22,6 +23,7 @@ const UploadFile: React.FC<UploadFileProps> = () => {
     uploadError: null,
     previewSource: null,
   });
+  const {user} = useAuth();
 
   const handleCamera = async () => {
     const result = await launchCamera({
@@ -50,19 +52,25 @@ const UploadFile: React.FC<UploadFileProps> = () => {
   const handleUpload = async () => {
     setState({...state, uploading: true});
     try {
-      console.log(process.env.SUPABASE_URL);
-      const {data, error} = await supabase
-        .from('profile-pictures')
-        .upload(state.file.fileName, state.file, {
-          cacheControl: 'public, max-age=31536000',
-        });
-      console.log(data);
+      const contentType = state.file.type;
+
+      const {data, error} = await supabase.storage
+        .from('files')
+        .upload(
+          `${user.id}/${new Date().getTime()}.${state.file.fileName}`,
+          state.file,
+          {
+            contentType,
+          },
+        );
+      console.log(data, error);
       if (error) {
         setState({...state, uploadError: error.message});
       } else {
         setState({...state, file: null});
       }
     } catch (error) {
+      console.error(error);
       setState({...state, uploadError: error.message});
     } finally {
       setState({...state, uploading: false});

@@ -18,12 +18,12 @@ export default function Home(props: HomeScreenNavigationProp) {
   return (
     <View>
       <Text style={{color: 'black'}}>Only Academy</Text>
-      <Button
+      {/* <Button
         icon="login"
         mode="contained"
         onPress={() => props.navigation.navigate('Login')}>
         Login
-      </Button>
+      </Button> */}
       <Button
         style={{marginTop: 20}}
         icon="camera"
@@ -51,6 +51,13 @@ export default function Home(props: HomeScreenNavigationProp) {
         mode="contained"
         onPress={() => props.navigation.navigate('UploadFile')}>
         Fazer Upload
+      </Button>
+      <Button
+        style={{marginTop: 20}}
+        icon={() => <Icon name="person-add" size={20} color="#900" />}
+        mode="contained"
+        onPress={() => props.navigation.navigate('UserForm')}>
+        UserForm
       </Button>
     </View>
   );

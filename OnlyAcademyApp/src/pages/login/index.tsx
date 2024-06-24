@@ -11,16 +11,22 @@ import {useState} from 'react';
 import React from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {supabase} from '../../config/initSupabase';
+import {RootStack} from '../../App';
+import {NativeStackScreenProps} from 'react-native-screens/lib/typescript/native-stack/types';
+// import {useAuth} from '../../provider/AuthProvider';
 
-const Login = () => {
+type LoginScreenNavigationProps = NativeStackScreenProps<RootStack, 'Login'>;
+
+const Login = (props: LoginScreenNavigationProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  // const {user} = useAuth();
 
   // Sign in with email and password
   const onSignInPress = async () => {
     setLoading(true);
-
+    // console.log(user);
     const {error} = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -30,6 +36,8 @@ const Login = () => {
       Alert.alert(error.message);
     }
     setLoading(false);
+    // console.log(user);
+    props.navigation.navigate('Home');
   };
 
   // Create a new user
@@ -78,7 +86,7 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 100,
+    paddingTop: 70,
     padding: 20,
     backgroundColor: '#151515',
   },
