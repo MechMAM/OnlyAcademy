@@ -12,6 +12,7 @@ import {useAuth} from './provider/AuthProvider';
 import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import UserForm from './pages/profile/UserForm';
+import PostForm from './pages/profile/PostForm';
 
 export type RootStack = {
   Home: undefined;
@@ -22,6 +23,7 @@ export type RootStack = {
   UploadFile: undefined;
   Login: undefined;
   UserForm: undefined;
+  PostForm: undefined;
 };
 
 const Stack = createStackNavigator<RootStack>();
@@ -32,9 +34,13 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
+          headerStyle: {
+            backgroundColor: '#151515',
+          },
+          headerTintColor: '#ccc',
           headerRight: () => (
             <TouchableOpacity onPress={signOut}>
-              <Icon name="log-out-outline" size={30} color={'black'} />
+              <Icon name="log-out-outline" size={30} color={'#ccc'} />
             </TouchableOpacity>
           ),
         }}>
@@ -44,7 +50,7 @@ export default function App() {
               name="Home"
               component={Home}
               options={{
-                headerTitle: 'Home',
+                headerTitle: 'Only Academy',
               }}
             />
             <Stack.Screen name="Camera" component={CameraScreen} />
@@ -53,6 +59,7 @@ export default function App() {
             <Stack.Screen name="PremiumForm" component={PremiumForm} />
             <Stack.Screen name="UploadFile" component={UploadFile} />
             <Stack.Screen name="UserForm" component={UserForm} />
+            <Stack.Screen name="PostForm" component={PostForm} />
             <Stack.Screen
               name="Login"
               component={Login}

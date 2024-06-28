@@ -80,61 +80,61 @@ const UserForm = (props: UserFormScreenNavigationProps) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <TextInput
-          label="Digite seu Nome"
-          value={firstName}
-          onChangeText={setFirstName}
-          style={styles.input}
-        />
-        <TextInput
-          label="Digite seu Sobrenome"
-          value={lastName}
-          onChangeText={setLastName}
-          style={styles.input}
-        />
-        <TextInput
-          label="Conte sobre você"
-          value={bio}
-          onChangeText={setBio}
-          style={styles.input}
-          multiline={true}
-        />
-        <TextInput
-          label="Qual sua localização"
-          value={location}
-          onChangeText={setLocation}
-          style={styles.input}
-        />
-        <Button
-          mode="contained"
-          onPress={() => setOpen(true)}
-          buttonColor="#2b825b"
-          textColor="#fff"
-          style={styles.input}>
-          Data de Nascimento
-        </Button>
-        <Text style={styles.texto}>
-          Data de nascimento: {birthdate?.toISOString()}
-        </Text>
-        <DatePickerModal
-          locale="pt-br"
-          mode="single"
-          visible={open}
-          onDismiss={onDismissSingle}
-          date={birthdate || new Date()}
-          onConfirm={onConfirmSingle}
-        />
-        <Button
-          mode="contained"
-          onPress={handleSubmit}
-          style={styles.input}
-          buttonColor="#090e9f"
-          textColor="#fff">
-          Cadastrar
-        </Button>
-      </View>
+    <ScrollView style={styles.container}>
+      {/* <View> */}
+      <TextInput
+        label="Digite seu Nome"
+        value={firstName}
+        onChangeText={setFirstName}
+        style={styles.input}
+      />
+      <TextInput
+        label="Digite seu Sobrenome"
+        value={lastName}
+        onChangeText={setLastName}
+        style={styles.input}
+      />
+      <TextInput
+        label="Conte sobre você"
+        value={bio}
+        onChangeText={setBio}
+        style={styles.input}
+        multiline={true}
+      />
+      <TextInput
+        label="Qual sua localização"
+        value={location}
+        onChangeText={setLocation}
+        style={styles.input}
+      />
+      <Button
+        mode="contained"
+        onPress={() => setOpen(true)}
+        buttonColor="#2b825b"
+        textColor="#fff"
+        style={styles.input}>
+        Data de Nascimento
+      </Button>
+      <Text style={styles.texto}>
+        Data de nascimento: {birthdate?.toISOString()}
+      </Text>
+      <DatePickerModal
+        locale="pt-br"
+        mode="single"
+        visible={open}
+        onDismiss={onDismissSingle}
+        date={birthdate || new Date()}
+        onConfirm={onConfirmSingle}
+      />
+      <Button
+        mode="contained"
+        onPress={handleSubmit}
+        style={styles.input}
+        buttonColor="#36099f"
+        textColor="#fff">
+        Atualizar informações
+      </Button>
+      {/* </View> */}
     </ScrollView>
   );
 };
@@ -142,8 +142,10 @@ const UserForm = (props: UserFormScreenNavigationProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     padding: 16,
+    backgroundColor: '#151515',
+    height: '100%',
   },
   input: {
     marginVertical: 8,
