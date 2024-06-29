@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import {Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -16,14 +16,14 @@ export default function Home(props: HomeScreenNavigationProp) {
   };
 
   return (
-    <View>
-      <Text style={{color: 'black'}}>Only Academy</Text>
-      <Button
+    <View style={styles.container}>
+      <Text>Menu Principal</Text>
+      {/* <Button
         icon="login"
         mode="contained"
         onPress={() => props.navigation.navigate('Login')}>
         Login
-      </Button>
+      </Button> */}
       <Button
         style={{marginTop: 20}}
         icon="camera"
@@ -45,13 +45,27 @@ export default function Home(props: HomeScreenNavigationProp) {
         onPress={() => props.navigation.navigate('Profile')}>
         Profile
       </Button>
-      <Button
-        style={{marginTop: 20}}
-        icon={() => <Icon name="cloud-upload-outline" size={20} color="#900" />}
-        mode="contained"
-        onPress={() => props.navigation.navigate('UploadFile')}>
-        Fazer Upload
-      </Button>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#151515',
+    height: '100%',
+  },
+  fab: {
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 40,
+    // position: 'static',
+    // bottom: 512,
+    // right: 10,
+    height: 40,
+    backgroundColor: '#2b825b',
+    borderRadius: 100,
+  },
+});

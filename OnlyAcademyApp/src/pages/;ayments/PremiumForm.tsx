@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
   card: {
     padding: 16,
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
   },
   cardContent: {
     padding: 16,
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 10,
-    backgroundColor: '#F5F5DC',
+    backgroundColor: '#151515',
   },
   button: {
     marginTop: 10,
