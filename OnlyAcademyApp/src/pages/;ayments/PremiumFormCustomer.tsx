@@ -13,13 +13,14 @@ import {ScrollView} from 'react-native-gesture-handler';
 import axios from '../../config/axios';
 import {RootStack} from '../../App';
 import {NativeStackScreenProps} from 'react-native-screens/lib/typescript/native-stack/types';
+import {PaperSelect} from 'react-native-paper-select';
 
 type PremiumFormScreenNavigationProp = NativeStackScreenProps<
   RootStack,
   'PremiumForm'
 >;
 
-const PremiumForm = (props: PremiumFormScreenNavigationProp) => {
+const PremiumFormCustomer = (props: PremiumFormScreenNavigationProp) => {
   const [street, setStreet] = useState('');
   const [number, setNumber] = useState('');
   const [complement, setComplement] = useState('');
@@ -38,53 +39,21 @@ const PremiumForm = (props: PremiumFormScreenNavigationProp) => {
   const [expYear, setExpYear] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [securityCode, setSecurityCode] = useState('');
+  const [clientId, setClientId] = useState('');
 
   // const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = () => {
     const data = {
-      plan: {id: `${process.env.PLAN_ID}`},
-      customer: {
-        address: {
-          street: street,
-          number: number,
-          complement: complement,
-          locality: locality,
-          city: city,
-          region_code: 'PR',
-          country: 'BRA',
-          postal_code: postalCode,
-        },
-        email: email,
-        name: name,
-        tax_id: taxId,
-        phones: [{area: area, country: '55', number: phoneNumber}],
-        birth_date: birthDate,
-        billing_info: [
-          {
-            card: {
-              holder: {
-                name: holderName,
-                birth_date: birthDate,
-                tax_id: taxId,
-              },
-              exp_year: expYear,
-              exp_month: expMonth,
-              number: cardNumber,
-            },
-            type: 'CREDIT_CARD',
-          },
-        ],
-      },
-      amount: {value: 499, currency: 'BRL'},
-      reference_id: 'subscription-h',
-      payment_method: [
-        {type: 'CREDIT_CARD', card: {security_code: securityCode}},
-      ],
+      plan: {id: 'planId'},
+      customer: {id: 'CUST_UUID'},
+      coupon: {id: 'couponId'},
+      amount: {value: 490, currency: 'BRL'},
+      best_invoice_date: {day: 1, month: 12},
+      reference_id: 'subscription-t',
+      payment_method: {type: 'CREDIT_CARD', card: {security_code: '123'}},
       pro_rata: false,
     };
-
-    console.log(data);
 
     axios
       .post(
@@ -117,18 +86,41 @@ const PremiumForm = (props: PremiumFormScreenNavigationProp) => {
 
   return (
     <Card style={styles.card}>
+      <Card.Content style={styles.cardContent}>
+        <Title style={styles.title}>Assine por R$4,99 ao mês</Title>
+        <Paragraph style={styles.paragraph}>
+          Preencha os campos abaixo para criar sua assinatura.
+        </Paragraph>
+      </Card.Content>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <Card.Content style={styles.cardContent}>
-          <Title style={styles.title}>Plano mensal por R$4,99 ao mês</Title>
-        </Card.Content>
         <View style={styles.container}>
-          <Paragraph style={styles.paragraph}>Dados Pessoais</Paragraph>
-          <TextInput
-            style={styles.input}
-            label="E-mail"
-            value={email}
-            onChangeText={setEmail}
-            mode="outlined"
+          <Paragraph style={styles.paragraph}>Selecione o cliente</Paragraph>
+          <PaperSelect
+            label="Select Gender"
+            value={clientId}
+            onSelection={(value: any) => {
+              setId({
+                ...gender,
+                value: value.text,
+                selectedList: value.selectedList,
+                error: '',
+              });
+            }}
+            arrayList={[...gender.list]}
+            selectedArrayList={gender.selectedList}
+            errorText={gender.error}
+            multiEnable={false}
+            dialogTitleStyle={{color: 'red'}}
+            checkboxColor="yellow"
+            checkboxLabelStyle={{color: 'red', fontWeight: '700'}}
+            textInputBackgroundColor="yellow"
+            textInputColor="red"
+            outlineColor="black"
+            theme={{
+              colors: {
+                placeholder: 'black',
+              },
+            }}
           />
           <TextInput
             style={styles.input}
@@ -271,7 +263,7 @@ const styles = StyleSheet.create({
   card: {
     padding: 16,
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
   },
   cardContent: {
     padding: 16,
@@ -297,7 +289,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 10,
-    backgroundColor: '#151515',
+    backgroundColor: '#F5F5DC',
   },
   button: {
     marginTop: 10,
@@ -305,4 +297,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PremiumForm;
+export default PremiumFormCustomer;
